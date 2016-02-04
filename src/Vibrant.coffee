@@ -85,8 +85,8 @@ window.Vibrant = class Vibrant
     if typeof quality == 'undefined'
       quality = 5
 
-    image = new CanvasImage(sourceImage)
     try
+      image = new CanvasImage(sourceImage)
       imageData = image.getImageData()
       pixels = imageData.data
       pixelCount = image.getPixelCount()
@@ -116,7 +116,8 @@ window.Vibrant = class Vibrant
 
     # Clean up
     finally
-      image.removeCanvas()
+      if image
+        image.removeCanvas()
 
   generateVarationColors: ->
     @VibrantSwatch = @findColorVariation(@TARGET_NORMAL_LUMA, @MIN_NORMAL_LUMA, @MAX_NORMAL_LUMA,

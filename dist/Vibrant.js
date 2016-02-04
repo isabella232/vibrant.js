@@ -627,8 +627,8 @@ module.exports = MMCQ.quantize
       if (typeof quality === 'undefined') {
         quality = 5;
       }
-      image = new CanvasImage(sourceImage);
       try {
+        image = new CanvasImage(sourceImage);
         imageData = image.getImageData();
         pixels = imageData.data;
         pixelCount = image.getPixelCount();
@@ -657,7 +657,9 @@ module.exports = MMCQ.quantize
         this.generateVarationColors();
         this.generateEmptySwatches();
       } finally {
-        image.removeCanvas();
+        if (image) {
+          image.removeCanvas();
+        }
       }
     }
 
